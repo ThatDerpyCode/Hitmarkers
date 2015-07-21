@@ -13,9 +13,9 @@ local function PaintHitmarker()
 	
 	surface.SetDrawColor(Color(255, 255, 255, alpha))
 
-	surface.DrawLine(x - 15, y - 15, x - 5, y - 5 )
-	surface.DrawLine(x - 15, y + 15, x - 5, y + 5 )
-	surface.DrawLine(x + 15, y - 15, x + 5, y - 5 )
+	surface.DrawLine(x - 15, y - 15, x - 5, y - 5)
+	surface.DrawLine(x - 15, y + 15, x - 5, y + 5)
+	surface.DrawLine(x + 15, y - 15, x + 5, y - 5)
 	surface.DrawLine(x + 15, y + 15, x + 5, y + 5)
 	alpha = alpha - 5
 end
