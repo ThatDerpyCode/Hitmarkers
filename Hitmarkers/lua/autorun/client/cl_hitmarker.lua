@@ -1,29 +1,36 @@
+local cl_hitmarker = CreateClientConVar("cl_hitmarker", "1", true)
+local sound // = Sound("sound/hitmarker.mp3")
+loacl time = CurTime()
+local fade = 0.8
+
 //resource.AddFile("sound/hitmarker.mp3")
 
-local alpha = 255
-
 local function PaintHitmarker()
-	if 0 >= alpha then
-		alpha = 255
+	local curtime = CurTime()
+
+	if time <= curtime then
 		hook.Remove("HUDPaint", "Hitmarker")
 	end
 
 	local x = ScrW() / 2
 	local y = ScrH() / 2
 	
-	surface.SetDrawColor(Color(255, 255, 255, alpha))
+	surface.SetDrawColor(Color(255, 255, 255, (time - curtime) / fade))
 
 	surface.DrawLine(x - 15, y - 15, x - 5, y - 5)
 	surface.DrawLine(x - 15, y + 15, x - 5, y + 5)
 	surface.DrawLine(x + 15, y - 15, x + 5, y - 5)
 	surface.DrawLine(x + 15, y + 15, x + 5, y + 5)
-	alpha = alpha - 5
 end
 
 local function Hitmarker()
-	//LocalPlayer():EmitSound("hitmarker.mp3", 130)
-	alpha = 255
-	hook.Add("HUDPaint", "Hitmarker", PaintHitmarker)
+	if cl_hitmarker:GetBool() then
+		time = CurTime() + fade
+		if sound then
+			surface.PlaySound(sound)
+		end
+		hook.Add("HUDPaint", "Hitmarker", PaintHitmarker)
+	end
 end
 
 net.Receive("Hitmarker", Hitmarker)
