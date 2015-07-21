@@ -1,0 +1,5 @@
+"AddonInfo"
+{
+	"name"	"Hitmarkers"
+	"info"	"Adding hitmarkers to Garry's Mod"
+}
