@@ -1,6 +1,6 @@
 local cl_hitmarker = CreateClientConVar("cl_hitmarker", "1", true)
 local sound // = Sound("sound/hitmarker.mp3")
-loacl time = CurTime()
+local time = CurTime()
 local fade = 0.8
 
 //resource.AddFile("sound/hitmarker.mp3")
